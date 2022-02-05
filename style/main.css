@@ -1,0 +1,222 @@
+:root
+{
+  --bgColor1: #71c3f3;
+  --bgColor2: #84cef8;
+  font-family: 'Merriweather', serif;
+  font-size: 2.5vh;
+  color: #2c2c2c;
+}
+
+
+
+
+
+/*                    -------Basic--------                         */
+
+body{
+  height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  text-align: center;
+  scroll-behavior: smooth;
+  margin: 0;
+	padding: 0;
+  
+  background-image: radial-gradient(var(--bgColor1), var(--bgColor2), var(--bgColor1) );
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  animation: backgroundAnim 4s;
+}
+
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.back-arrow {
+  float: left;
+  margin-left: 1vw;
+  margin-top: 1vw;
+}
+
+.back-arrow img {
+  height: 5vh;
+}
+
+h2 {
+  color: #444;
+  font-size: 1.7rem;
+  width: 100%
+}
+
+
+
+
+
+/*                    -------Input--------                         */
+
+.form {
+  transform: translateY(20%);
+  padding-top: 5vh;
+}
+
+.in {
+  width:100%;
+  position: relative;
+  height: 12vh;
+  overflow: hidden;
+  background-color: transparent;
+  margin-top: 0px;
+}
+
+.setter {
+  background-color: transparent;
+}
+
+.in input {
+  width: 100%;
+  height: 12vh;
+  text-align: center;
+  color: #595f6e;
+  padding-top: 4vh;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+
+.in label{
+  position: absolute;
+  bottom: 0px;
+  left:0px;
+  font-size: 1rem;
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+
+.in label::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  bottom:-1px;
+  left:0px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #105075;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.content {
+  position: absolute;
+  bottom:5px;
+  left: 0px;
+  transition: all 0.3s ease;
+  width:100%;
+}
+
+.in input:focus + .labelName .content, .in input:valid + .labelName .content{
+  transform:  translateY(-90%);
+  font-size: 0.85rem;
+  color: #105075;
+}
+
+
+.in  input:focus + .labelName::after, .in  input:valid + .labelName::after{
+  transform: translateX(0%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*                    -------Button--------                         */
+
+.sub {
+  margin-top: 10vh;
+  border-radius: 20px;
+  border-top: 10;
+  font-size: 1rem;
+  border-color: #595f6e;
+  background-color: transparent;
+  height: 10vh;
+  width: 100%;
+  opacity:0.8;
+  transition: all 300ms ease;
+}
+
+.sub:hover {
+  border-color: #147ebb;
+  opacity: 1.0;
+  transform: scale(1.05);
+}
+
+.changeButton {
+  margin-top: 10vh;
+  border-radius: 20px;
+  border-top: 10;
+  font-size: 1.2rem;
+  border-color: #595f6e;
+  background-color: transparent;
+  float: left;
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+  opacity:0.8;
+  transition: all 300ms ease;
+}
+
+.changeButton:hover {
+  border-color: #147ebb;
+  opacity: 1.0;
+  transform: scale(1.05);
+}
+
+
+
+
+/*                    -------Gamestates--------                         */
+
+.gamestate_visible
+{
+  transform: translateY(30%);
+  position: absolute;
+  min-width:50vw;
+  min-height: 40vh;
+}
+
+
+.gamestate_invisible
+{
+  visibility: hidden;
+  position: fixed;
+}
+
+#wordInput
+{
+  color: #2c2c2c;
+}
+
+#RoomID
+{
+  position: fixed;
+  top:0
+}

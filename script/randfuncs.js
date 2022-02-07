@@ -21,3 +21,15 @@ function random(seed) {
   var x = Math.sin(seed++) * 10000; 
   return x - Math.floor(x);
 }
+
+
+
+function sort(arr)
+{
+  arr.sort(function(a, b){
+    if(a.firstname < b.firstname) { return -1; }
+    if(a.firstname > b.firstname) { return 1; }
+    return 0;
+  })
+  return arr;
+}

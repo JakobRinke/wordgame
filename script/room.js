@@ -89,7 +89,7 @@ function onStartChange(data, key)
     console.log(started)
     if(started)
     {
-        wordsMixed = shuffle(Wordlist, roomID);
+        wordsMixed = shuffle(sort(Wordlist), roomID);
 
         gameStateGameDiv.classList.add('gamestate_visible');
         gameStateGameDiv.classList.remove('gamestate_invisible');

@@ -154,6 +154,7 @@ h2 {
   margin-top: 10vh;
   border-radius: 20px;
   border: 0.4vh solid #595f6e;
+  border-width: 0.4vh 0.75vh 1vh 0.4vh;
   font-size: 1rem;
   background-color: transparent;
   height: 10vh;

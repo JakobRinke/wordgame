@@ -4,6 +4,7 @@ const gameStateWordDiv = document.getElementById("gamestate_word");
 const gameStateGameDiv = document.getElementById("gamestate_game");
 const wordcountDiv = document.getElementById("wordcount");
 const wordstateDiv = document.getElementById("wordstate");
+const UserTurnDiv = document.getElementById("USER_Dran");
 
 
 const queryString = window.location.search;
@@ -31,6 +32,7 @@ const roomID = parseInt(urlParams.get("roomID"));
 document.getElementById("RoomID").innerHTML = "Raum ID: " + roomID
 
 var Wordlist = [];
+var Playerlist = [];
 var Round = 0;
 var started = false;
 
@@ -50,6 +52,7 @@ function onWordAdd()
 }
 
 
+
 function onWordsChange(data, key)
 {
     if (!Wordlist.includes(data))
@@ -58,6 +61,16 @@ function onWordsChange(data, key)
     }
     Wordlist = shuffle(sort(Wordlist), roomID);
     wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
+}
+
+function onPlayersChange(data, key)
+{
+    if (!Playerlist.includes(data))
+    {
+        Playerlist.push(data)
+    }
+    Playerlist = sort(Playerlist), roomID;
+   // wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
 }
 
 function onRoundChange(data, key)
@@ -138,7 +151,8 @@ function onStartChange(data, key)
 
 function updateWordState()
 {
-    wordstateDiv.innerHTML = "Wort: " +( Round + 1) + " / " + Wordlist.length
+    wordstateDiv.innerHTML = "Wort: " +( Round + 1) + " / " + Wordlist.length;
+    UserTurnDiv.innerHTML = "Am Zug: " + Playerlist[Round%Playerlist.length];
 }
 
 
@@ -146,4 +160,4 @@ function updateWordState()
 
 
 
-subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange);
+subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange, onPlayersChange);

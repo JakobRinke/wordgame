@@ -24,7 +24,18 @@ function logRoom(data, key)
     console.log(data)
 }
 
-
+function addPlayer(name)
+{
+    var terminate = false
+    gun.get("wordgame/rooms/").get(roomID).get("started").once(k=>{
+        if (k) {return; }
+        gun.get("wordgame/rooms/").get(roomID).get("users").once().map().once((key, value)=>{
+            terminate = terminate||value==name
+        })
+        if (terminate) { return; }
+        gun.get("wordgame/rooms/").get(roomID).get("users").set(name);
+    });
+}
 
 function addWord(roomID,word)
 {
@@ -74,9 +85,10 @@ function lastRound(roomID)
     })
 }
 
-function subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange)
+function subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange, PlayerChange)
 {
     gun.get("wordgame/rooms/").get(roomID).get("started").on(onStartChange);
     gun.get("wordgame/rooms/").get(roomID).get("words").map().on(onWordsChange);
     gun.get("wordgame/rooms/").get(roomID).get("round").on(onRoundChange);
+    gun.get("wordgame/rooms/").get(roomID).get("users").map().on(PlayerChange);
 }

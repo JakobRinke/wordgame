@@ -22,6 +22,12 @@
 	<h1> Geschichtenspiel </h1>
 
   	<div class="form">
+		<div class="in">
+			<input type="text" id="username" name="username" autocomplete="off" required oninput="onUsernameUpdate(this)" />
+            <label for="username" class="labelName">
+                <span class="content">Benutzername</span>
+            </label>
+		</div>
 		
 
 		<button class="sub" onclick="location.href='room.html?create=true&roomID='+createRoom();"> Neuen Raum erstellen </button>
@@ -30,6 +36,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 		<script src="script/api.js"></script>
+		<script src="script/user.js"></script>
 
 	</div>
 

@@ -153,9 +153,8 @@ h2 {
 .sub {
   margin-top: 10vh;
   border-radius: 20px;
-  border-top: 10;
+  border: 0.4vh solid #595f6e;
   font-size: 1rem;
-  border-color: #595f6e;
   background-color: transparent;
   height: 10vh;
   width: 100%;

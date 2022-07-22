@@ -2,11 +2,27 @@ const WordInput = document.getElementById("wordInp");
 const WordContainer = document.getElementById("wordContainer");
 const gameStateWordDiv = document.getElementById("gamestate_word");
 const gameStateGameDiv = document.getElementById("gamestate_game");
+const wordcountDiv = document.getElementById("wordcount");
+const wordstateDiv = document.getElementById("wordstate");
 
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const create = urlParams.get("create")=="true"
+
+function deactivateElement(el)
+{
+    el.style.visibility = "hidden"
+    el.style.pointer_events = "none"
+}
+
+if (!create)
+{
+    deactivateElement(document.getElementById("gamestarter"))
+    deactivateElement(document.getElementsByClassName("changeButton")[0])
+    deactivateElement(document.getElementsByClassName("changeButton")[1])
+}
+
 
 
 const roomID = parseInt(urlParams.get("roomID"));
@@ -40,12 +56,14 @@ function onWordsChange(data, key)
     {
         Wordlist.push(data)
     }
-
+    Wordlist = shuffle(sort(Wordlist), roomID);
+    wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
 }
 
 function onRoundChange(data, key)
 {
     Round = data
+    updateWordState()
     if(!started)
     {
         return;
@@ -90,7 +108,8 @@ function onStartChange(data, key)
     if(started)
     {
         wordsMixed = shuffle(sort(Wordlist), roomID);
-
+        updateWordState()
+ 
         gameStateGameDiv.classList.add('gamestate_visible');
         gameStateGameDiv.classList.remove('gamestate_invisible');
         
@@ -117,7 +136,10 @@ function onStartChange(data, key)
     }
 }
 
-
+function updateWordState()
+{
+    wordstateDiv.innerHTML = "Wort: " +( Round + 1) + " / " + Wordlist.length
+}
 
 
 

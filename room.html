@@ -24,8 +24,10 @@
 	</header>
 
     <h1 id="RoomID"> Raum ID: </h1>
+    
 
   	<div id="gamestate_word" class="gamestate_visible">
+        <h3 id="wordcount"> Wortanzahl: 0 </h3>
         <h2> Füge Wörter hinzu</h2>
 
 		<div class="in">
@@ -35,12 +37,13 @@
             </label>
         </div>
         <button class="sub" onclick="onWordAdd()"> Hinzufügen </button>
-        <button class="sub" onclick="start(roomID)"> Spiel Starten </button>
+        <button class="sub" id="gamestarter" onclick="start(roomID)"> Spiel Starten </button>
 
 	</div>
 
 
     <div id="gamestate_game" class="gamestate_invisible">
+        <h3 id="wordstate"> Wort: 0/n </h3>
         <h2> Das Aktuelle Wort ist: </h2>
         <h2 id="wordContainer"> F </h2>
 

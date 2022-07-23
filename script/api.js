@@ -85,10 +85,12 @@ function lastRound(roomID)
     })
 }
 
-function subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange, PlayerChange)
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function subscribeRoomEvents(roomID, onStartChange, onWordsChange, onRoundChange, PlayerChange)
 {
     gun.get("wordgame/rooms/").get(roomID).get("started").on(onStartChange);
     gun.get("wordgame/rooms/").get(roomID).get("words").map().on(onWordsChange);
-    gun.get("wordgame/rooms/").get(roomID).get("round").on(onRoundChange);
+    await sleep(1000)
     gun.get("wordgame/rooms/").get(roomID).get("users").map().on(PlayerChange);
+    gun.get("wordgame/rooms/").get(roomID).get("round").on(onRoundChange);
 }

@@ -59,7 +59,6 @@ function onWordsChange(data, key)
     {
         Wordlist.push(data)
     }
-    Wordlist = shuffle(sort(Wordlist), roomID);
     wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
 }
 
@@ -75,6 +74,7 @@ function onPlayersChange(data, key)
 
 function onRoundChange(data, key)
 {
+    Wordlist = shuffle(sort(Wordlist), roomID);
     Round = data
     updateWordState()
     if(!started)
@@ -116,8 +116,8 @@ function onRoundChange(data, key)
 
 function onStartChange(data, key)
 {
+    Wordlist = shuffle(sort(Wordlist), roomID);
     started = data
-    console.log(started)
     if(started)
     {
         wordsMixed = shuffle(sort(Wordlist), roomID);

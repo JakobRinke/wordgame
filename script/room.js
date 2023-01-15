@@ -59,6 +59,8 @@ function onWordsChange(data, key)
     {
         Wordlist.push(data)
     }
+    Wordlist.sort();
+    Wordlist = shuffle(Wordlist, roomID);
     wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
 }
 
@@ -68,13 +70,15 @@ function onPlayersChange(data, key)
     {
         Playerlist.push(data)
     }
-    Playerlist = sort(Playerlist), roomID;
+    Playerlist.sort();
+    Playerlist = shuffle(Playerlist, roomID);
    // wordcountDiv.innerHTML = "Wortanzahl: " + Wordlist.length
 }
 
 function onRoundChange(data, key)
 {
-    Wordlist = shuffle(sort(Wordlist), roomID);
+    Wordlist.sort();
+    Wordlist = shuffle(Wordlist, roomID);
     Round = data
     updateWordState()
     if(!started)
@@ -116,11 +120,14 @@ function onRoundChange(data, key)
 
 function onStartChange(data, key)
 {
-    Wordlist = shuffle(sort(Wordlist), roomID);
+    Wordlist.sort();
+    Wordlist = shuffle(Wordlist, roomID);
     started = data
     if(started)
     {
-        wordsMixed = shuffle(sort(Wordlist), roomID);
+        wordsMixed = [...Wordlist];
+        wordsMixed.sort();
+        shuffle(wordsMixed);
         updateWordState()
  
         gameStateGameDiv.classList.add('gamestate_visible');

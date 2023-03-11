@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+		<link rel="stylesheet" href="style/main.css" type="text/css">
+    
+		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
+		<title>Wordgame</title>
+
+		<meta charset ="utf-8">
+
+</head>
+
+
+<body>
+
+	<header>
+		<a href="index.html" class="back-arrow"> <img src="img/back.png" alt="Zurück"></a>
+	</header>
+	<h1> Spieler Hinzufügen </h1>
+
+  	<div class="form">
+
+
+		<ul id="Playerlist">
+
+		</ul>
+
+		<input type="text" id="playerid" name="playerid" autocomplete="off" required 
+		class="sub"
+		"
+		/>
+
+
+		<button class="sub" type ="button" onclick="add_Player()"> Hinzufügen </button>
+		<button class="sub" type ="button" onclick="join_single()"> Beitreten </button>
+
+		
+
+
+	</div>
+
+		
+	<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+	<script src="script/api.js"></script>
+
+	<script>
+		 const playerPrefab="<li onclick='removePlayer(\"NAME\")'> NAME </li>";
+		const playerlist = document.getElementById("Playerlist");
+		const pInp = document.getElementById("playerid");
+
+		var Players = []
+
+		function add_Player() {
+			Players.push(pInp.value)
+			renderPlayerList();
+			pInp.value = "";
+		}
+
+
+		function removePlayer(p) {
+			Players.splice(Players.indexOf(p), 1);
+			renderPlayerList();
+		}
+
+		function renderPlayerList() {
+			playerlist.innerHTML = "";
+			for (p in Players) {
+				playerlist.innerHTML += playerPrefab.replace(/NAME/g, Players[p]);
+			}
+		}
+
+		function join_single() {
+			window.location = "./room.html?create=true&"+"&players="+Players.join("---");
+		}
+
+		
+
+	</script>
+
+
+</body>
+
+
+</html>

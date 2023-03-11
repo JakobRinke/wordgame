@@ -10,6 +10,9 @@ const UserTurnDiv = document.getElementById("USER_Dran");
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const create = urlParams.get("create")=="true"
+const players = urlParams.get("players");
+
+
 
 function deactivateElement(el)
 {
@@ -26,7 +29,20 @@ if (!create)
 
 
 
+if (players==null) {
+    try {
+        addPlayer(USERNAME);
+        
 const roomID = parseInt(urlParams.get("roomID"));
+    }catch {}
+} else {
+    console.log(players)
+    const roomID  = createRoom();
+    var pl = players.split("---");
+    for (p in pl) {
+        addPlayer(pl[p]);
+    }
+}
 
 
 document.getElementById("RoomID").innerHTML = "Raum ID: " + roomID

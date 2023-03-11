@@ -14,12 +14,7 @@ try
   
 } 
 catch {}
-try {
-    addPlayer(USERNAME);
-}
-catch {
-    
-}
+
 
 function onUsernameUpdate(el)
 {

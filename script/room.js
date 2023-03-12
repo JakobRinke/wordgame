@@ -27,17 +27,16 @@ if (!create)
     deactivateElement(document.getElementsByClassName("changeButton")[1])
 }
 
-
+var roomID;
 
 if (players==null) {
     try {
+        roomID = parseInt(urlParams.get("roomID"));
         addPlayer(USERNAME);
-        
-const roomID = parseInt(urlParams.get("roomID"));
     }catch {}
 } else {
     console.log(players)
-    const roomID  = createRoom();
+    roomID  = createRoom();
     var pl = players.split("---");
     for (p in pl) {
         addPlayer(pl[p]);

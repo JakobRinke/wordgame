@@ -12,11 +12,14 @@ function roomExists(roomID)
 function createRoom()
 {
     roomID = parseInt(Math.random() * 100000)
+    return createRoom_id(roomID);
+}
+function createRoom_id(roomID)
+{
     gun.get("wordgame/rooms/").get(roomID).get("started").put(false)
     gun.get("wordgame/rooms/").get(roomID).get("round").put(0)
     return roomID;
 }
-
 
 function logRoom(data, key)
 {
@@ -28,7 +31,10 @@ function addPlayer(name)
 {
     var terminate = false
     gun.get("wordgame/rooms/").get(roomID).get("started").once(k=>{
+        console.log(k);
         if (k) {return; }
+        console.log(k);
+        if (k==undefined) { createRoom_id(roonID); }
         gun.get("wordgame/rooms/").get(roomID).get("users").once().map().once((key, value)=>{
             terminate = terminate||value==name
         })
